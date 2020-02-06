@@ -7,7 +7,7 @@ We study the power function of the two-sample t-test (see Section 1.9 of Assignm
 1. Set n=m=30, mu=180 and sd=5. Calculate now the power of the t-test for every value of nu in the grid seq(175,185,by=0.25). Plot the power as a function of nu.:white_check_mark:
 2. Set n=m=100, mu=180 and sd=5. Repeat the preceding exercise. Add the plot to the preceding plot.:white_check_mark:
 3. Set n=m=30, mu=180 and sd=15. Repeat the preceding exercise.:white_check_mark:
-4. **Explain your findings.**
+4. Explain your findings. *High n/m(observations) + low sd = best power, low n/m + low sd = can still have good power, low n/m AND low sd = little power*:white_check_mark:
 ![alt text](https://github.com/LotteSuz/edda1/blob/master/plots/plot_ass_1.png)
 
 ## Exercise 2. Speed of light
