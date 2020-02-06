@@ -4,10 +4,11 @@
 ## Exercise 1. Power function of the t-test
 We study the power function of the two-sample t-test (see Section 1.9 of Assignment 0). For n=m=30, mu=180, nu=175 and sd=5, generate 1000 samples x=rnorm(n,mu,sd) and y=rnorm(m,nu,sd), and record the 1000 p-values for testing H0: mu=nu. You can evaluate the power (at point nu=175) of this t-test as fraction of p-values that are smaller than 0.05.
 
-1. Set n=m=30, mu=180 and sd=5. Calculate now the power of the t-test for every value of nu in the grid seq(175,185,by=0.25). Plot the power as a function of nu.
-2. Set n=m=100, mu=180 and sd=5. Repeat the preceding exercise. Add the plot to the preceding plot.
-3. Set n=m=30, mu=180 and sd=15. Repeat the preceding exercise.
-4. Explain your findings.
+1. Set n=m=30, mu=180 and sd=5. Calculate now the power of the t-test for every value of nu in the grid seq(175,185,by=0.25). Plot the power as a function of nu.:white_check_mark:
+2. Set n=m=100, mu=180 and sd=5. Repeat the preceding exercise. Add the plot to the preceding plot.:white_check_mark:
+3. Set n=m=30, mu=180 and sd=15. Repeat the preceding exercise.:white_check_mark:
+4. **Explain your findings.**
+![alt text](https://github.com/LotteSuz/edda1/blob/master/plots/plot_ass_1.png)
 
 ## Exercise 2. Speed of light
 In 1849 and 1850, the French physicists Fizeau and Foucault had separately devised methods of measuring the velocity of light. Foucault’s method, as refined and improved by Newcomb and Michelson, was the source of the more accurate subsequent determinations. Foucault’s method consists in essence of passing light from a source off a rapidly rotating mirror to a distant fixed mirror, and back to the rotating mirror. The velocity of light is then determined by measuring the distance involved, the speed of the rotating mirror and the angular displacement of the received image from its source.
