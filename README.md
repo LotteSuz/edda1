@@ -25,22 +25,54 @@ measurements of Michelson and Newcomb?
 A telecommunication company has entered the market for mobile phones in a new country. The company’s marketing manager conducts a survey of 200 new subscribers for mobile phones. The results of the survey are in the data set telephone.txt, which contains the first month bills X1 , . . . X200 , in euros.
 
 1. Make an appropriate plot of this data set. What marketing advice(s) would you give to the marketing manager? Are there any inconsistencies in the data? If so, try to fix these.
-2. By using a bootstrap test with the test statistic T = median(X1,...,X200), test whether the data telephone.txt stems from the exponential distribution Exp(λ) with some λ from [0.01, 0.1].
-3. Construct a 95% bootstrap confidence interval for the population median of the sample.
-4. Assuming X1 , . . . Xn ∼ Exp(λ) and using the central limit theorem for the sample mean, estimate λ and construct again a 95% confidence interval for the population median. Comment on your findings.
+:white_check_mark:
+![alt text](plots/hist_assignment3.png)
+_Advice:
+There are a lot of bills very small bills (smaller than 20$) and a lot of bills between 90$ and 100$. Advice would be to focus on these two groups: the group of people who don't have any bills or only small bills and the group of people with bills between 80$ - 110$._
+
+2. By using a bootstrap test with the test statistic T = median(X1,...,X200), test whether the data telephone.txt stems from the exponential distribution Exp(λ) with some µλ from [0.01, 0.1].
+
+  _T = 26.9;
+  p-value = 0.00162. It can be concluded that the data does not follow an exponential distribution with some λ from [0.01, 0.1]._
+  :white_check_mark:
+  ![alt text](plots/exponential.png)
+
+3. Construct a 95% bootstrap confidence interval for the population median of the sample.  :white_check_mark:
+
+  _The 95% confidence interval is [38.2  48.8]._
+
+4. Assuming X1 , . . . Xn ∼ Exp(λ) and using the central limit theorem for the sample mean, estimate λ and construct again a 95% confidence interval for the population median. Comment on your findings.:x:
+
 5. Using an appropriate test, test the null hypothesis that the median bill is bigger or equal to 40 euro against the alternative that the median bill is smaller than 40 euro. Next, design and perform a test
-to check whether the fraction of the bills less than 10 euro is at most 25%.
+to check whether the fraction of the bills less than 10 euro is at most 25%.:white_check_mark:
+
+  _Pvalue(bigger or equal to 40) = 0.415;
+  Pvalue(smaller than 40) =  0.585; (or 1 - 0.415)_
+
+  _So, H0 is not rejected, the median is not bigger or equal to 40 and not smaller than 40 euro._
+
+  _The fraction of bills less than 10 euro is 26%._
 
 ## Exercise 4. Energy drink
-To study the effect of energy drink a sample of 24 high school pupils were randomized to drinking either a softdrink or an energy drink after running for 60 meters. After half an hour they were asked to run again. For both sprints they were asked to sprint as fast they could, and the sprinting time was measured. The data is given in the file run.txt. [Courtesy class 5E, Stedelijk Gymnasium Leiden, 2010.] 
+To study the effect of energy drink a sample of 24 high school pupils were randomized to drinking either a softdrink or an energy drink after running for 60 meters. After half an hour they were asked to run again. For both sprints they were asked to sprint as fast they could, and the sprinting time was measured. The data is given in the file run.txt. [Courtesy class 5E, Stedelijk Gymnasium Leiden, 2010.]
 
-1. Disregarding the type of drink, test whether the run times before drink and after are correlated.
+1. Disregarding the type of drink, test whether the run times before drink and after are correlated.:white_check_mark:
+
+  _Data is normally distributed, so a Pearson’s product-moment correlation can be executed. p-value = 0.00078 and r=0.639. There is a significant correlation of 0.639_  
+
 2. Test separately, for both the softdrink and the energy drink conditions, whether there is a difference
-in speed in the two running tasks.
-3. For each pupil compute the time difference between the two running tasks. Test whether these time
-differences are effected by the type of drink.
+in speed in the two running tasks.:white_check_mark:
+
+  _p-value for lemo-group = 0.4; p_value for energy-group = 0.1; So, for both groups, H0 is not rejected: the mean of the differences is not different from 0._
+
+3. For each pupil compute the time difference between the two running tasks. Test whether these time differences are effected by the type of drink.:white_check_mark:
+
+  _Independent t-test gives a p-value of 0.2, so H0 is rejected; the differences are not effected by the type of drink._
+
 4. Can you think of a plausible objection to the design of the experiment in b) if the main aim was to test
-whether drinking the energy drink speeds up the running? Is there a similar objection to the design of the experiment in c)? Comment on all your findings in this exercise.
+whether drinking the energy drink speeds up the running? Is there a similar objection to the design of the experiment in c)? Comment on all your findings in this exercise.:x:
+
+  _The number of pupils was small. TODO_
 
 ## Exercise 5. Chick weights
 The dataset chickwts is a data frame included in the standard R installation, to view it, type chickwts at the R prompt. This data frame contains 71 observations on newly-hatched chicks which were randomly allocated among six groups. Each group was given a different feed supplement for six weeks, after which their weight (in grams) was measured. The data frame consists of a numeric column giving the weights, and a factor column giving the name of the feed supplement.
