@@ -57,7 +57,8 @@ to check whether the fraction of the bills less than 10 euro is at most 25%.:whi
 To study the effect of energy drink a sample of 24 high school pupils were randomized to drinking either a softdrink or an energy drink after running for 60 meters. After half an hour they were asked to run again. For both sprints they were asked to sprint as fast they could, and the sprinting time was measured. The data is given in the file run.txt. [Courtesy class 5E, Stedelijk Gymnasium Leiden, 2010.]
 
 1. Disregarding the type of drink, test whether the run times before drink and after are correlated.:white_check_mark:
-
+  ![alt text](plots/runningtime.png)
+  _At glance, there is a relationship between the two experiments. As the runningtime before increases, the runningtime after also increases._
   _Data is normally distributed, so a Pearson’s product-moment correlation can be executed. p-value = 0.00078 and r=0.639. There is a significant correlation of 0.639_  
 
 2. Test separately, for both the softdrink and the energy drink conditions, whether there is a difference
@@ -70,9 +71,14 @@ in speed in the two running tasks.:white_check_mark:
   _Independent t-test gives a p-value of 0.2, so H0 is rejected; the differences are not effected by the type of drink._
 
 4. Can you think of a plausible objection to the design of the experiment in b) if the main aim was to test
-whether drinking the energy drink speeds up the running? Is there a similar objection to the design of the experiment in c)? Comment on all your findings in this exercise.:x:
+whether drinking the energy drink speeds up the running? Is there a similar objection to the design of the experiment in c)? Comment on all your findings in this exercise.:white_check_mark:
 
-  _The number of pupils was small. TODO_
+  _First of all, it has been shown that there is a significant correlation of 0.693, indicating that the speed of running after an energy drink is correlated to the speed of running before the drink. An explanation for this finding could be the fact that experiment 1 and 2 are conducted by the same person. If a pupil already starts with a fast runningtime, this pupil is likely to also end with a fast runningtime._
+
+  * _Other factors could have influenced the results, such as actions during resting time._
+  * _The number of pupils could have been small. The statistical significance of any statistic is only partly due to its size, it's also a function of sample size._
+  * _Data is missing about how much lemonade or energy the pupils drank. It is possible that the variance of the amount is very high, what could have influence the results._
+  * _For experiment c: A T-test between the two groups showed that there is no difference between experiment 1 and experiment 2. This indicates that there may also not be a difference between the two experiments when testing if the type of energy drink speeds up the running._
 
 ## Exercise 5. Chick weights
 The dataset chickwts is a data frame included in the standard R installation, to view it, type chickwts at the R prompt. This data frame contains 71 observations on newly-hatched chicks which were randomly allocated among six groups. Each group was given a different feed supplement for six weeks, after which their weight (in grams) was measured. The data frame consists of a numeric column giving the weights, and a factor column giving the name of the feed supplement.
