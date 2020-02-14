@@ -2,6 +2,17 @@ B = 1000
 par(mfrow=c(1,1))
 telephone <- read.csv("telephone.txt", sep="")
 data = telephone$Bills
+
+qplot(data,
+      geom="histogram",
+      binwidth = 2,  
+      main = "Billing frequency", 
+      xlab = "Bill",  
+      ylab = "Frequency",
+      fill=I("blue"), 
+      col=I("red"), 
+      alpha=I(.4))
+
 hist(data, main="Billing frequency", xlab="Bill")
 x=seq(0, max(data), length=B)
 lines(x,dexp(x),type="l",col="blue",lwd=2)

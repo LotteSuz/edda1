@@ -1,5 +1,9 @@
-data <- read.csv("run.txt", sep="")
+data <- data.frame(read.csv("run.txt", sep="")
 par(mfrow=c(1,1))
+
+plot(data$before, data$after, xlab="Before", ylab="After", main="Runningtime for all pupils")
+
+ggplot(data, aes(x=data$before, y=data$after)) + geom_point()
 
 # First check for normality
 shapiro.test(data$before) # p-value > 0.05, so normally distributeed
