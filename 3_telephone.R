@@ -3,15 +3,15 @@ par(mfrow=c(1,1))
 telephone <- read.csv("telephone.txt", sep="")
 data = telephone$Bills
 
-qplot(data,
-      geom="histogram",
-      binwidth = 2,  
-      main = "Billing frequency", 
-      xlab = "Bill",  
-      ylab = "Frequency",
-      fill=I("blue"), 
-      col=I("red"), 
-      alpha=I(.4))
+temp = data[data <= 50] 
+
+shapiro.test(data)
+df <- data.frame(cbind(data, index = 1:length(data)))
+fit <- lm(data ~ index, data = df)
+
+ggplot(data=telephone, aes(telephone$Bills)) + 
+  geom_histogram(binwidth = 7) 
+
 
 hist(data, main="Billing frequency", xlab="Bill")
 x=seq(0, max(data), length=B)
@@ -36,8 +36,8 @@ p=2*min(pl,pr)
 pl;pr;p
 
 # Determine if data follows an exponential distribution
-lambda = c(0.1, 1)
-par(mfrow = c(1, 3))
+lambda = c(1, 0.1)
+# par(mfrow = c(1, 3))
 qqnorm(data)
 
 results = c()
@@ -64,7 +64,7 @@ for (i in lambda) {
 print(p_values)
 
 # Calculate bootstrap confidence interval
-y = data
+y = medians
 B = 10^4;  d.re = numeric(B)
 a.obs = mean(y);  n = length(y)
 for (i in 1:B) {
@@ -80,4 +80,41 @@ binom.test(sum(data<40),200,p=0.5) # Smaller than 40 euro
 
 # Fraction of bills smaller than 10 euro
 print(length(data[which(data<10)])/200)
+
+# Generate samples
+medians = c()
+for (i in 1:1000) {
+  sample_median = median(sample(data, 100))
+  medians[i] = sample_median
+}
+mean(medians)
+
+data_temp = c()
+index2 = c()
+for (i in 1:200) {
+  data_temp = c(data_temp, round(telephone$Bills[i]))
+  index2 = c(index2, index[i]/4)
+}
+
+
+
+ggplot(data=telephone, aes(x=telephone$Bills, y = index2)) +
+  geom_bin2d() +
+  geom_density_2d(color="grey", geom = "polygon") +
+  theme_grey(base_size = 21) +
+  labs(y="Frequency", x="Bill", title="Distribution of bills") + 
+  scale_fill_viridis_c()
+
+temp = rexp(n = 200, rate = 30)
+
+ggplot(data=telephone, aes(x=telephone$Bills)) +
+  geom_histogram(binwidth = 6, color="black", alpha=0.4) +
+  geom_freqpoly(binwidth = 6, color="red") +
+  labs(x="Bill", y="Frequency", title="Distribution of bills") +
+  theme_grey(base_size = 21)  
+
+
+
+
+ 
 
