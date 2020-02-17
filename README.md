@@ -18,6 +18,17 @@ In 1879 Michelson performed 100 experiments to determine the speed of light and 
 1. Investigate the normality for all three data sets.
 2. Determine confidence intervals for the speed of light in km/sec for all three data sets (use population
 means). Comment on the intervals found.
+
+Michelson_79: one-sample t-test: t = 107.88, df = 99, p-value < 2.2e-16, alternative hypothesis: true mean is not equal to 0,95 percent confidence interval: 836.7226-868.0774, sample estimates:mean of x 852.4
+
+
+Michelson_82: one-sample t-test: t = 33.858, df = 22, p-value < 2.2e-16, alternative hypothesis: true mean is not equal to 0, 95 percent confidence interval: 709.8976 - 802.5372, sample estimates:mean of x 756.2174
+
+
+Newcomb: one-sample t-test: t = 19.818, df = 65, p-value < 2.2e-16, alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval: 23.57059-28.85365, sample estimates: mean of x 26.21212 
+
+
 3. Find on the internet the currently most accurate value for the speed of light. Is it consistent with the
 measurements of Michelson and Newcomb?
 
