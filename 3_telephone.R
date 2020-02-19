@@ -36,32 +36,26 @@ p=2*min(pl,pr)
 pl;pr;p
 
 # Determine if data follows an exponential distribution
-lambda = c(1, 0.1)
-# par(mfrow = c(1, 3))
-qqnorm(data)
-
-results = c()
+control = data[data <= 50] 
+qqnorm(control)
 p_values = c()
-for (i in lambda) {
+n = 125
+lamdas = seq(from = 0.1, to = 1, length.out = 100)
+for (i in lamdas) {
   
   # Generate surrogate datas ample
-  ex = rexp(200, rate = i)
-  control = data
+  ex = rexp(125, rate = i)
     
   # estimate the parameters
   fit1 <- fitdistr(ex, "exponential") 
   fit2 <- fitdistr(control, "exponential")
+  res1 = ks.test(ex, control) #  significant p-value -> distribution refused
+  p_values = c(p_values, res1$p.value)
 
-  # goodness of fit test
-  ks.test(ex, "pexp", fit1$estimate) # p-value > 0.05 -> distribution not refused
-  res = ks.test(control, "pexp", fit2$estimate) #  significant p-value -> distribution refused
-  p_values = c(p_values, res$p.value)
-  
   # plot a graph to test whether data follows an exponential distribution
   hist(control, freq = FALSE, breaks = 30, xlab="Bill", main=paste("Lambda", i) )
   curve(dexp(x, rate = fit1$estimate), from = 0, col = "red", add = TRUE, lwd=3)
 }
-print(p_values)
 
 # Calculate bootstrap confidence interval
 y = medians
@@ -100,7 +94,7 @@ for (i in 1:200) {
 
 ggplot(data=telephone, aes(x=telephone$Bills, y = index2)) +
   geom_bin2d() +
-  geom_density_2d(color="grey", geom = "polygon") +
+  geom_density_2d(color="darkgrey", size = 1.5) +
   theme_grey(base_size = 21) +
   labs(y="Frequency", x="Bill", title="Distribution of bills") + 
   scale_fill_viridis_c()
