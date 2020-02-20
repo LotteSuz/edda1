@@ -29,6 +29,21 @@ for (i in 1:B){
 hist(tstar,prob=T, ylim=c(0,0.18),  main="True density curve of T (median), samples=1000", xlab="Billing") 
 lines(density(tstar), type="l",col="blue", lwd=3)
 
+# 95% confidence interval
+B=1000
+data_median=median(telephone)
+data=telephone
+Tstar=numeric(B)
+for(i in 1:B){
+  Xstar=sample(data,replace=TRUE)
+  Tstar[i]=mean(Xstar) 
+}
+Tstar25=quantile(Tstar,0.025)
+Tstar975=quantile(Tstar,0.975)
+sum(Tstar<Tstar25)
+c(2*data_median-Tstar975,2*data_median-Tstar25) 
+
+
 # Dertemine p-value
 pl=sum(tstar<t)/B
 pr=sum(tstar>t)/B
@@ -38,24 +53,36 @@ pl;pr;p
 # Determine if data follows an exponential distribution
 control = data[data <= 50] 
 qqnorm(control)
+
 p_values = c()
-n = 125
-lamdas = seq(from = 0.1, to = 1, length.out = 100)
+n = 200
+lamdas = seq(from = 0.0001, to = 1, length.out = 1000)
 for (i in lamdas) {
   
   # Generate surrogate datas ample
-  ex = rexp(125, rate = i)
+  ex = rexp(n, rate = 0.021119)
     
   # estimate the parameters
   fit1 <- fitdistr(ex, "exponential") 
-  fit2 <- fitdistr(control, "exponential")
-  res1 = ks.test(ex, control) #  significant p-value -> distribution refused
+  fit2 <- fitdistr(data, "exponential")
+  
+  res1 = ks.test(ex, data) #  significant p-value -> distribution refused
+  res1$p.value
   p_values = c(p_values, res1$p.value)
-
-  # plot a graph to test whether data follows an exponential distribution
-  hist(control, freq = FALSE, breaks = 30, xlab="Bill", main=paste("Lambda", i) )
-  curve(dexp(x, rate = fit1$estimate), from = 0, col = "red", add = TRUE, lwd=3)
 }
+# Print v-values
+p_values
+max(p_values)
+which(p_values==max(p_values))
+
+# Check which lamda resulted in a fit
+lamdas[22]
+
+# Plot a graph
+hist(data, freq = FALSE, breaks = 30, xlab="Bill", main=paste("Lambda", 0.021) )
+curve(dexp(x, rate = fit1$estimate), from = 0, col = "red", add = TRUE, lwd=3)
+
+
 
 # Calculate bootstrap confidence interval
 y = medians
